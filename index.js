@@ -1,7 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import {connectDb} from './db.js'
-import { AuthRouter } from './routers/index.js';
+import { AuthRouter, ProductRouter } from './routers/index.js';
+import swaggerUi from 'swagger-ui-express';
+import swaggerSpec from './swagger.js';
 
 const app = express();
 // Middleware for parsing request body
@@ -20,8 +22,9 @@ app.use(cors());
 //   })
 // );
 
-
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/api/v1', AuthRouter);
+app.use('/api/v1', ProductRouter);
 
 // app.use('/books', booksRoute);
 

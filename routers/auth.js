@@ -10,6 +10,39 @@ const handleValidateReq = ({ username, password }, res) => {
     }
 }
 
+/**
+ * @swagger
+ * tags:
+ *   name: Auth
+ *   description: Auth management
+ */
+
+/**
+ * @swagger
+ * /register:
+ *   post:
+ *     summary: Create a new user
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - username
+ *               - password
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 example: JohnDoe
+ *               password:
+ *                 type: string
+ *                 example: password
+ *     responses:
+ *       201:
+ *         description: User created successfully
+ */
 
 router.post("/register", async (req, res) => {
     const { username, password } = req.body;
@@ -28,6 +61,40 @@ router.post("/register", async (req, res) => {
    res.status(201).json({message: "User created successfully"})
 
 })
+
+/**
+ * @swagger
+ * tags:
+ *   name: Auth
+ *   description: Auth management
+ */
+
+/**
+ * @swagger
+ * /login:
+ *   post:
+ *     summary: Login
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - username
+ *               - password
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 example: JohnDoe
+ *               password:
+ *                 type: string
+ *                 example: password
+ *     responses:
+ *       200:
+ *         description: token
+ */
 
 router.post("/login", async (req, res) => {
    try {
@@ -55,7 +122,5 @@ router.post("/login", async (req, res) => {
    }
 
 })
-    
-
 
 export default router
