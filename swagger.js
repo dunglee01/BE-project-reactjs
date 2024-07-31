@@ -9,8 +9,7 @@ const swaggerDefinition = {
   },
   servers: [
     {
-      url: 'http://localhost:3001/api/v1',
-      description: 'Development server',
+      url: 'https://be-project-reactjs.vercel.app/api/v1',
     },
   ],
 };

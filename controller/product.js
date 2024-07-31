@@ -16,7 +16,13 @@ const createProduct = async (req, res) => {
     return res.status(201).send("Add Product Successfully")
 }
 
+const getProduct = async (req, res) => {
+    const products = await Product.find()
+    return res.send(products)
+}
 
 export {
-    createProduct
+    createProduct,
+    getProduct
 }
+
