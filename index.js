@@ -15,7 +15,7 @@ app.use(cors());
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const options = { customCssUrl: 'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.18.3/swagger-ui.css' };
+const options = { };
 
 const spec = JSON.parse(
     fs.readFileSync(path.join(__dirname, 'swagger.json'), 'utf8')
@@ -31,6 +31,9 @@ app.use(helmet({
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(spec, options));
 app.use('/api/v1', AuthRouter);
 app.use('/api/v1', ProductRouter);
+app.use('/index', (req, res) => {
+    return res.body("OK")
+})
 
 const start = () => {
     connectDb(app);
