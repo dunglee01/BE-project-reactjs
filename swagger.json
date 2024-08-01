@@ -1,0 +1,83 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "BE ECOMMERSE",
+      "description": "HOC LAP TRINH CUNG DUNG",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "https://be-project-reactjs.vercel.app/api/v1"
+      }
+    ],
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "Auth management"
+        }
+    ],
+    "paths": {
+      "/login": {
+        "post": {
+        "tags" : ["Auth"],
+          "requestBody" : {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["username", "password"],    
+                  "properties": {
+                    "username": {
+                      "type": "string",
+                      "example": "JohnDoe"
+                    },
+                    "password": {
+                      "type": "string",
+                      "example": "password"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "id": "1",
+              "token": "ey..."
+            }}
+        }
+      },
+      "/register": {
+        "post": {
+        "tags" : ["Auth"],
+          "requestBody" : {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["username", "password"],    
+                  "properties": {
+                    "username": {
+                      "type": "string",
+                      "example": "JohnDoe"
+                    },
+                    "password": {
+                      "type": "string",
+                      "example": "password"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "create user successfully"
+            }}
+        }
+      }
+    }
+  }
+  
