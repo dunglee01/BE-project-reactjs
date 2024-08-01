@@ -4,6 +4,8 @@ import {connectDb} from './db.js'
 import { AuthRouter, ProductRouter } from './routers/index.js';
 import swaggerUi from 'swagger-ui-express';
 import swaggerSpec from './swagger.js';
+import fs from 'fs';
+import path from 'path';
 
 const app = express();
 // Middleware for parsing request body
@@ -21,8 +23,13 @@ app.use(cors());
 //     allowedHeaders: ['Content-Type'], 
 //   })
 // );
+const options = { customCssUrl: 'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.18.3/swagger-ui.css' };
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+// const spec = JSON.parse(
+//     fs.readFileSync(path.join(__dirname, '../petstore-api.json'), 'utf8')
+// );
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, options));
 app.use('/api/v1', AuthRouter);
 app.use('/api/v1', ProductRouter);
 
