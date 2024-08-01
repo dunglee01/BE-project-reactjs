@@ -15,7 +15,7 @@ app.use(cors());
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const options = { };
+const options = { customCssUrl: 'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.18.3/swagger-ui.css' };
 
 const spec = JSON.parse(
     fs.readFileSync(path.join(__dirname, 'swagger.json'), 'utf8')
@@ -23,10 +23,6 @@ const spec = JSON.parse(
 
 const cspDefaults = helmet.contentSecurityPolicy.getDefaultDirectives();
 delete cspDefaults['upgrade-insecure-requests'];
-
-// Allow scripts and styles from the 'self' source and Swagger UI's CDN
-cspDefaults['script-src'] = ["'self'", 'https://cdnjs.cloudflare.com'];
-cspDefaults['style-src'] = ["'self'", 'https://cdnjs.cloudflare.com'];
 
 app.use(helmet({
     contentSecurityPolicy: { directives: cspDefaults }
