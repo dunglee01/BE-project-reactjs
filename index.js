@@ -24,6 +24,10 @@ const spec = JSON.parse(
 const cspDefaults = helmet.contentSecurityPolicy.getDefaultDirectives();
 delete cspDefaults['upgrade-insecure-requests'];
 
+// Allow scripts and styles from the 'self' source and Swagger UI's CDN
+cspDefaults['script-src'] = ["'self'", 'https://cdnjs.cloudflare.com'];
+cspDefaults['style-src'] = ["'self'", 'https://cdnjs.cloudflare.com'];
+
 app.use(helmet({
     contentSecurityPolicy: { directives: cspDefaults }
 }));
